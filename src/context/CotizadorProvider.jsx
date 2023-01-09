@@ -6,6 +6,8 @@ const CotizadorContext = createContext();
 const CotizadorProvider = ({ children }) => {
   //aca se puede definir lo que tu quieras para poner a disponer a todos los componentes
   const [error, setError] = useState("");
+  const [cargando, setCargando] = useState(false)
+  const [resultado, setResultado] = useState(0);
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
@@ -39,18 +41,24 @@ const CotizadorProvider = ({ children }) => {
     
     //formatear dinero
     resultado = formatearDinero(resultado)
-    console.log(resultado)
+    setCargando(true)
 
+    setTimeout(() => {
+        setResultado(resultado)
+        setCargando(false)
+    }, 3000);
   }
 
   return (
     <CotizadorContext.Provider
       value={{
         datos,
-        handleChangeDatos,
+        resultado,
         error,
+        cargando,
+        handleChangeDatos,
         setError,
-        cotizarSeguro
+        cotizarSeguro,
       }}
     >
       {children}
