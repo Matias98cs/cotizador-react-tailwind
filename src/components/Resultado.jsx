@@ -8,7 +8,14 @@ const Resultado = () => {
   const yearRef = useRef(year)
 
   //evitar el re render en la variable de marca con useCallback
-  const [nombreMarca] = useCallback(
+  // const [nombreMarca] = useCallback(
+  //   MARCAS.filter((m) => m.id === Number(marca)),
+  //   [resultado]
+  // );
+
+  //useMemo es casi lo mismo que useCallback
+  //Es una optimization de rendiminento
+  const [nombreMarca] = useMemo( () =>
     MARCAS.filter((m) => m.id === Number(marca)),
     [resultado]
   );
