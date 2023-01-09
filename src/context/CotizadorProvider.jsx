@@ -4,6 +4,7 @@ const CotizadorContext = createContext();
 
 const CotizadorProvider = ({ children }) => {
   //aca se puede definir lo que tu quieras para poner a disponer a todos los componentes
+  const [error, setError] = useState("");
   const [datos, setDatos] = useState({
     marca: "",
     year: "",
@@ -21,6 +22,8 @@ const CotizadorProvider = ({ children }) => {
       value={{
         datos,
         handleChangeDatos,
+        error,
+        setError
       }}
     >
       {children}
